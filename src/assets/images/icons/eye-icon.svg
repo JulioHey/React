@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="308.5" height="241" viewBox="0 0 617 482">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #9c98a6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 20px;
+      }
+
+      .cls-1 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Forma_1" data-name="Forma 1" class="cls-1" d="M10,250a361.308,361.308,0,0,1,596,0c-71.4,84.54-175.167,135.6-286,139C200.794,392.66,86.844,340.807,10,250Z"/>
+  <circle id="Elipse_1" data-name="Elipse 1" class="cls-2" cx="308" cy="241" r="125"/>
+  <path id="Forma_2" data-name="Forma 2" class="cls-1" d="M30-90"/>
+</svg>
