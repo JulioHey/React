@@ -18,11 +18,11 @@ export const Img = styled.img`
 
 export const BackgroundImg = styled(Img)`
     position: absolute;
-    left: -15rem;
+    left: 1rem;
     top: 5rem;
 
     height: 80vh;
-    width: 80vw;
+    width: 50vw;
 
 `
 

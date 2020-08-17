@@ -4,7 +4,7 @@ import GlobalStyle from './assets/theme/globalStyle'
 
 function App() {
   return (
-    <Fragment>
+    <Fragment>  
       <GlobalStyle/>
       <Route/> 
     </Fragment>
