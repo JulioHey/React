@@ -1,16 +1,14 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useMemo, useCallback, useState } from 'react';
 
-import PageSide  from '../../components/PageSide'
-import InputFloatingLabel from '../../components/InputFloat'
-import Forms from '../../components/Forms'
+import PageSide from '../../components/PageSide';
+import InputFloatingLabel from '../../components/InputFloat';
+import Forms from '../../components/Forms';
 
+import back from '../../assets/images/icons/back.svg';
 import visible from '../../assets/images/icons/eye-icon.svg';
 import notVisible from '../../assets/images/icons/eye-close-icon.svg';
-import checked from '../../assets/images/icons/check-icon.png';
-import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
 
-
-import { Section, SideSection, EyeButton , EyeImage, CheckButton, CheckImage, Span, StyledLink, HeartImage, ColumnSection, StyledLinkRegister, StyledH4, FormSection } from './styles'
+import { Section, SideSection, StyledLink, BackImage, EyeImage, EyeButton, FormSection } from './styles'
 
 interface InputStateType {
     currentValue: string;
@@ -30,21 +28,18 @@ interface InputTypes {
     children?: any; 
 }
 
-const LoginPage: React.FC = () => {
+const RegisterPage: React.FC = () => {
     const [ name, setName ] = useState<InputStateType>({currentValue: '', isFocus: false});
+    const [ lastName, setLastName ] = useState<InputStateType>({currentValue: '', isFocus: false});
+    const [ email, setEmail ] = useState<InputStateType>({currentValue: '', isFocus: false});
     const [ password, setPassword ] = useState<InputStateType>({currentValue: '', isFocus: false});
 
     const [ isPasswordVisible, setIsPasswordVisible ] = useState(false);
-    const [ rememberUser, setRememberUser ] = useState(false);
-
 
     const handlePasswordVisible = useCallback(()=> {
         setIsPasswordVisible(!isPasswordVisible)
     }, [isPasswordVisible])
 
-    const handleRememberUser = useCallback(() => {
-        setRememberUser(!rememberUser)
-    }, [rememberUser])
 
     const constructInput = useCallback((inputType: InputTypes) => {
         return (
@@ -80,6 +75,38 @@ const LoginPage: React.FC = () => {
         )
     }, [name, constructInput])
 
+    const LastNameInput = useMemo(() => {
+        return (
+            constructInput({
+                label: 'Sobrenome', 
+                position: 'middle',
+                name: 'lastName',
+                className:  lastName.currentValue || lastName.isFocus ? "" : "floating-label",
+                value: lastName.currentValue,
+
+                onFocusFunction: (e: any) => setLastName({currentValue: lastName.currentValue, isFocus: true}),
+                onBlurFunction: (e: any) => setLastName({currentValue: lastName.currentValue, isFocus: false}),
+                onChangeFunction: (e: any) => setLastName({currentValue: e.target.value, isFocus: lastName.isFocus}),
+            })
+        )
+    }, [lastName, constructInput])
+
+    const EmailInput = useMemo(() => {
+        return (
+            constructInput({
+                label: 'E-mail', 
+                position: 'middle',
+                name: 'email',
+                className:  email.currentValue || email.isFocus ? "" : "floating-label",
+                value: email.currentValue,
+
+                onFocusFunction: (e: any) => setEmail({currentValue: email.currentValue, isFocus: true}),
+                onBlurFunction: (e: any) => setEmail({currentValue: email.currentValue, isFocus: false}),
+                onChangeFunction: (e: any) => setEmail({currentValue: e.target.value, isFocus: email.isFocus}),
+            })
+        )  
+    }, [email, constructInput])
+
     const PasswordInput = useMemo(() => {
         return (
             constructInput({
@@ -103,46 +130,33 @@ const LoginPage: React.FC = () => {
         )
     }, [password, isPasswordVisible, constructInput, handlePasswordVisible])
 
-    const FormsChidrens = useMemo(() => {
+    const FormsChildrens = useMemo(() => {
         return (
-            <FormSection>
+            <FormSection >
                 {LoginInput}
+                {LastNameInput}
+                {EmailInput}
                 {PasswordInput}
-                <Section className="userPref">
-                    <CheckButton onClick={handleRememberUser} type="button">
-                        { rememberUser ? <CheckImage src={checked}/> : ""}
-                    </CheckButton>
-                    <Span>Lembrar-me</Span>
-                    <StyledLink to="/recover">Esqueci minha senha</StyledLink>
-                </Section>
             </FormSection>
         )
-    }, [LoginInput, PasswordInput, rememberUser, handleRememberUser])
+    }, [LoginInput, LastNameInput, EmailInput, PasswordInput])
 
     return (
-        <Section id="login-page">
-            <PageSide/>
+        <Section>
             <SideSection>
-                <Forms 
-                    title="Fazer login"
-                    children={FormsChidrens}
-                    submitButton="Entrar"
+                <StyledLink to="/">
+                    <BackImage src={back}/>
+                </StyledLink>
+                <Forms
+                    title="Cadastro" 
+                    subtitle="Preencha os dados abaixo paracomeçar."
+                    submitButton="Concluir cadastro"
+                    children={FormsChildrens}
                 />
-                <Section className="newUser">
-
-                    <ColumnSection>
-                        <StyledH4>Não tem conta?</StyledH4>
-                        <StyledLinkRegister to="/register">Cadastra-se</StyledLinkRegister>
-                    </ColumnSection>
-
-                    <Span className="free">
-                        É de graça
-                        <HeartImage src={purpleHeartIcon}/>
-                    </Span>
-                </Section> 
             </SideSection>
+            <PageSide/>
         </Section>
     )
 }
 
-export default LoginPage;
+export default RegisterPage;

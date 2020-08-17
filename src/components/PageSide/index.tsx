@@ -7,7 +7,7 @@ import logo from '../../assets/images/logo.svg';
 
 const PageSide: React.FC = () => {
     return (
-    <SideSection className="PageSide">
+    <SideSection className="PageSide" >
         <BackgroundImg src={background}></BackgroundImg>
         <Img src={logo}></Img>
         <SpanLogo>Sua plataforma de estudos online</SpanLogo>

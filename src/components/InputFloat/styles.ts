@@ -12,10 +12,10 @@ export const InputFloat = styled.input`
     height: 52px;
     position: relative;
 
-    border-top-right-radius:${props => props.className === ('start' || 'only') ? "8px" : "0px"};
-    border-top-left-radius: ${props => props.className === ('start' || 'only') ? "8px" : "0px"};
-    border-bottom-left-radius:${props => props.className === ('finish' || 'only') ? "8px" : "0px"};
-    border-bottom-right-radius:${props => props.className === ('finish' || 'only') ? "8px" : "0px"};
+    border-top-right-radius:${props => props.className === 'start' || props.className === 'only' ? "8px" : "0px"};
+    border-top-left-radius: ${props => props.className === 'start' || props.className === 'only' ? "8px" : "0px"};
+    border-bottom-left-radius:${props => props.className === 'finish' || props.className === 'only' ? "8px" : "0px"};
+    border-bottom-right-radius:${props => props.className === 'finish' || props.className === 'only' ? "8px" : "0px"};
     outline: none;
 
 
@@ -33,7 +33,7 @@ export const InputFloat = styled.input`
 export const FloatingLabel = styled.label`
     position: relative;
     right: 350px;
-    width: 0;
+    width: 100px;
 
     padding: 0;
     margin: 0;
