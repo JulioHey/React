@@ -47,7 +47,7 @@ const LandingPage: React.FC = () => {
                         <ButtonLogoImage src={studyIcon} />
                         Estudar
                     </StyledLink>
-                    <StyledLink className="green" to="/">
+                    <StyledLink className="green" to="/registerClass">
                         <ButtonLogoImage src={giveClasseIcon} />
                         Dar aulas
                     </StyledLink>

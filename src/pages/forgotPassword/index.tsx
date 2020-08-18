@@ -4,10 +4,9 @@ import PageSide from '../../components/PageSide';
 import InputFloatingLabel from '../../components/InputFloat';
 import Forms from '../../components/Forms';
 import FormSent from '../../components/FormSent';
+import BackLink from '../../components/BackLink';
 
-import back from '../../assets/images/icons/back.svg';
-
-import { Section, SideSection, StyledLink, BackImage } from './styles'
+import { Section, SideSection} from './styles'
 
 interface InputStateType {
     currentValue: string;
@@ -54,9 +53,7 @@ const ForgotPassword: React.FC = () => {
             /> :
             <Section>
                 <SideSection>
-                    <StyledLink to="/">
-                        <BackImage src={back}/>
-                    </StyledLink>
+                    <BackLink link="/" />
                     <Forms 
                         title="Eita esqueceu sua senha?"
                         subtitle="Não esquenta, vamos dar um jeito nisso."

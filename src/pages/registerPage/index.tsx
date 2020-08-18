@@ -4,12 +4,12 @@ import PageSide from '../../components/PageSide';
 import InputFloatingLabel from '../../components/InputFloat';
 import Forms from '../../components/Forms';
 import FormSent from '../../components/FormSent';
+import BackLink from '../../components/BackLink';
 
-import back from '../../assets/images/icons/back.svg';
 import visible from '../../assets/images/icons/eye-icon.svg';
 import notVisible from '../../assets/images/icons/eye-close-icon.svg';
 
-import { Section, SideSection, StyledLink, BackImage, EyeImage, EyeButton, FormSection } from './styles'
+import { Section, SideSection, EyeImage, EyeButton, FormSection } from './styles'
 
 interface InputStateType {
     currentValue: string;
@@ -162,9 +162,7 @@ const RegisterPage: React.FC = () => {
             /> :
             <Section>
                 <SideSection>
-                    <StyledLink to="/">
-                        <BackImage src={back}/>
-                    </StyledLink>
+                    <BackLink link="/" />
                     <Forms
                         title="Cadastro" 
                         subtitle="Preencha os dados abaixo paracomeçar."
