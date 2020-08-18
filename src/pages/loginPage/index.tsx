@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, FormEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import PageSide  from '../../components/PageSide'
 import InputFloatingLabel from '../../components/InputFloat'
@@ -37,6 +38,15 @@ const LoginPage: React.FC = () => {
     const [ isPasswordVisible, setIsPasswordVisible ] = useState(false);
     const [ rememberUser, setRememberUser ] = useState(false);
 
+    const history = useHistory();
+
+    const handleFormSent = useCallback((e: FormEvent) => {
+        e.preventDefault();
+
+        if (name.currentValue && password.currentValue) {
+            history.push("/landing")
+        }
+    }, [name, password])
 
     const handlePasswordVisible = useCallback(()=> {
         setIsPasswordVisible(!isPasswordVisible)
@@ -127,6 +137,7 @@ const LoginPage: React.FC = () => {
                     title="Fazer login"
                     children={FormsChidrens}
                     submitButton="Entrar"
+                    onSubmitFunction={(e: FormEvent) => handleFormSent(e)}
                 />
                 <Section className="newUser">
 

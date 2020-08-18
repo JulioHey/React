@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useState } from 'react';
+import React, { useMemo, useCallback, useState, FormEvent } from 'react';
 
 import PageSide from '../../components/PageSide';
 import InputFloatingLabel from '../../components/InputFloat';
@@ -36,11 +36,15 @@ const RegisterPage: React.FC = () => {
     const [ password, setPassword ] = useState<InputStateType>({currentValue: '', isFocus: false});
 
     const [ isPasswordVisible, setIsPasswordVisible ] = useState(false);
-    const [isFormSent, setFormSent ] =useState(false);
+    const [isFormSent, setIsFormSent ] =useState(false);
 
-    const handleFormSent = useCallback(() => {
-        setFormSent(true)
-    }, []);
+    const handleFormSent = useCallback((e: FormEvent) => {
+        e.preventDefault();
+
+        if (name.currentValue && lastName.currentValue && email.currentValue && password.currentValue) {
+            setIsFormSent(true)
+        }
+    }, [name, lastName, email, password]);
 
     const handlePasswordVisible = useCallback(()=> {
         setIsPasswordVisible(!isPasswordVisible)
@@ -166,7 +170,7 @@ const RegisterPage: React.FC = () => {
                         subtitle="Preencha os dados abaixo paracomeçar."
                         submitButton="Concluir cadastro"
                         children={FormsChildrens}
-                        onSubmitFunction={() => handleFormSent()}
+                        onSubmitFunction={(e: FormEvent) => handleFormSent(e)}
                     />
                 </SideSection>
                 <PageSide/>

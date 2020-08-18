@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, FormEvent } from 'react';
 
 import PageSide from '../../components/PageSide';
 import InputFloatingLabel from '../../components/InputFloat';
@@ -12,15 +12,19 @@ import { Section, SideSection, StyledLink, BackImage } from './styles'
 interface InputStateType {
     currentValue: string;
     isFocus: boolean
-}
+}   
 
 const ForgotPassword: React.FC = () => {
     const [ email, setEmail ] = useState<InputStateType>({currentValue: '', isFocus: false});
     const [isFormSent, setFormSent ] =useState(false);
 
-    const handleFormSent = useCallback(() => {
-        setFormSent(true)
-    }, []);
+    const handleFormSent = useCallback((e: FormEvent) => {
+        e.preventDefault();
+
+        if ( email.currentValue ) {
+            setFormSent(true)
+        }
+    }, [email]);
 
     const EmailInput = useMemo(() => {
         return (
@@ -58,7 +62,7 @@ const ForgotPassword: React.FC = () => {
                         subtitle="Não esquenta, vamos dar um jeito nisso."
                         children={EmailInput}
                         submitButton="Enviar"
-                        onSubmitFunction={() => handleFormSent()}
+                        onSubmitFunction={(e: FormEvent) => handleFormSent(e)}
                     />
                 </SideSection>
                 <PageSide />

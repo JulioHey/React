@@ -13,11 +13,11 @@ interface FormsProps {
 const Forms: React.FC<FormsProps> = ({title, subtitle, children, submitButton, onSubmitFunction}) => {
     return (
         <Section>
-            <Form>
+            <Form onSubmit={onSubmitFunction}>
                 <Title>{title}</Title>
                 { subtitle ? <SubTitle>{subtitle}</SubTitle> : ""}
                 {children}
-                <EnterButton type="submit" onClick={onSubmitFunction}>{submitButton}</EnterButton>
+                <EnterButton type="submit">{submitButton}</EnterButton>
             </Form>
         </Section>
     )
