@@ -9,7 +9,8 @@ import giveClasseIcon from '../../assets/images/icons/give-classes.svg';
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
 import logOut from '../../assets/images/icons/log-out.svg';
 
-import { Section, HeaderSection, ProfileImage, ProfileSpan, Button, LogOutImage, ContentSection, Img, SpanLogo, LogoSection, BackgroundImage, HeroSection } from './styles'
+import { Section, HeaderSection, ProfileImage, ProfileSpan, Button, LogOutImage, ContentSection, Img, SpanLogo, LogoSection, BackgroundImage, 
+    HeroSection, WelcomeSection, WelcomeStrong, WelcomeStrongDarker, WelcomeSpan, PurpleHeart, ButtonsSection, StyledLink, ButtonLogoImage} from './styles'
 
 const LandingPage: React.FC = () => {
     return (
@@ -31,6 +32,26 @@ const LandingPage: React.FC = () => {
                 <HeroSection>
                     <BackgroundImage src={landingImg} />
                 </HeroSection>
+                <WelcomeSection>
+                    <Section className="welcome">
+                        <WelcomeStrong>Seja bem-vindo</WelcomeStrong>
+                        <WelcomeStrongDarker>O que deseja fazer?</WelcomeStrongDarker>
+                    </Section>
+                    <WelcomeSpan>
+                        Total de 285 conexões já realizadas
+                        <PurpleHeart src={purpleHeartIcon}/>
+                    </WelcomeSpan>
+                </WelcomeSection>
+                <ButtonsSection>
+                    <StyledLink to="/">
+                        <ButtonLogoImage src={studyIcon} />
+                        Estudar
+                    </StyledLink>
+                    <StyledLink className="green" to="/">
+                        <ButtonLogoImage src={giveClasseIcon} />
+                        Dar aulas
+                    </StyledLink>
+                </ButtonsSection>
             </ContentSection>
         </Section>
     )

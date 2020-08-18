@@ -46,7 +46,7 @@ const LoginPage: React.FC = () => {
         if (name.currentValue && password.currentValue) {
             history.push("/landing")
         }
-    }, [name, password])
+    }, [name, password, history])
 
     const handlePasswordVisible = useCallback(()=> {
         setIsPasswordVisible(!isPasswordVisible)
