@@ -3,6 +3,7 @@ import React, { useMemo, useCallback, useState } from 'react';
 import PageSide from '../../components/PageSide';
 import InputFloatingLabel from '../../components/InputFloat';
 import Forms from '../../components/Forms';
+import FormSent from '../../components/FormSent';
 
 import back from '../../assets/images/icons/back.svg';
 import visible from '../../assets/images/icons/eye-icon.svg';
@@ -35,6 +36,11 @@ const RegisterPage: React.FC = () => {
     const [ password, setPassword ] = useState<InputStateType>({currentValue: '', isFocus: false});
 
     const [ isPasswordVisible, setIsPasswordVisible ] = useState(false);
+    const [isFormSent, setFormSent ] =useState(false);
+
+    const handleFormSent = useCallback(() => {
+        setFormSent(true)
+    }, []);
 
     const handlePasswordVisible = useCallback(()=> {
         setIsPasswordVisible(!isPasswordVisible)
@@ -143,18 +149,28 @@ const RegisterPage: React.FC = () => {
 
     return (
         <Section>
-            <SideSection>
-                <StyledLink to="/">
-                    <BackImage src={back}/>
-                </StyledLink>
-                <Forms
-                    title="Cadastro" 
-                    subtitle="Preencha os dados abaixo paracomeçar."
-                    submitButton="Concluir cadastro"
-                    children={FormsChildrens}
-                />
-            </SideSection>
-            <PageSide/>
+            { isFormSent ? 
+            <FormSent 
+                title="Cadastro concluído"
+                text="Agora você faz parte da plataforma da Proffy. Tenha uma ótima experiência."
+                buttonText="Fazer login"
+                link="/"
+            /> :
+            <Section>
+                <SideSection>
+                    <StyledLink to="/">
+                        <BackImage src={back}/>
+                    </StyledLink>
+                    <Forms
+                        title="Cadastro" 
+                        subtitle="Preencha os dados abaixo paracomeçar."
+                        submitButton="Concluir cadastro"
+                        children={FormsChildrens}
+                        onSubmitFunction={() => handleFormSent()}
+                    />
+                </SideSection>
+                <PageSide/>
+            </Section>}
         </Section>
     )
 }

@@ -7,16 +7,17 @@ interface FormsProps {
     subtitle?: string;
     chidren?: JSX.Element;
     submitButton: string;
+    onSubmitFunction?: any
 }
 
-const Forms: React.FC<FormsProps> = ({title, subtitle, children, submitButton}) => {
+const Forms: React.FC<FormsProps> = ({title, subtitle, children, submitButton, onSubmitFunction}) => {
     return (
         <Section>
             <Form>
                 <Title>{title}</Title>
                 { subtitle ? <SubTitle>{subtitle}</SubTitle> : ""}
                 {children}
-                <EnterButton type="submit">{submitButton}</EnterButton>
+                <EnterButton type="submit" onClick={onSubmitFunction}>{submitButton}</EnterButton>
             </Form>
         </Section>
     )

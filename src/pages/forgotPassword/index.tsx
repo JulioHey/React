@@ -1,8 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 
 import PageSide from '../../components/PageSide';
 import InputFloatingLabel from '../../components/InputFloat';
 import Forms from '../../components/Forms';
+import FormSent from '../../components/FormSent';
 
 import back from '../../assets/images/icons/back.svg';
 
@@ -15,6 +16,11 @@ interface InputStateType {
 
 const ForgotPassword: React.FC = () => {
     const [ email, setEmail ] = useState<InputStateType>({currentValue: '', isFocus: false});
+    const [isFormSent, setFormSent ] =useState(false);
+
+    const handleFormSent = useCallback(() => {
+        setFormSent(true)
+    }, []);
 
     const EmailInput = useMemo(() => {
         return (
@@ -32,20 +38,31 @@ const ForgotPassword: React.FC = () => {
         )
     }, [email])
 
+
     return (
         <Section>
-            <SideSection>
-                <StyledLink to="/">
-                    <BackImage src={back}/>
-                </StyledLink>
-                <Forms 
-                    title="Eita esqueceu sua senha?"
-                    subtitle="Não esquenta, vamos dar um jeito nisso."
-                    children={EmailInput}
-                    submitButton="Enviar"
-                />
-            </SideSection>
-            <PageSide />
+            {isFormSent ? 
+            <FormSent 
+                title="Redefinição enviada!"
+                text="Boa, agora é só checar o e-mail que foi enviado para você redefinir sua senha e aproveitar os estudos."
+                buttonText="Voltar ao login"
+                link="/"
+            /> :
+            <Section>
+                <SideSection>
+                    <StyledLink to="/">
+                        <BackImage src={back}/>
+                    </StyledLink>
+                    <Forms 
+                        title="Eita esqueceu sua senha?"
+                        subtitle="Não esquenta, vamos dar um jeito nisso."
+                        children={EmailInput}
+                        submitButton="Enviar"
+                        onSubmitFunction={() => handleFormSent()}
+                    />
+                </SideSection>
+                <PageSide />
+            </Section>}
         </Section>
     )
 }
