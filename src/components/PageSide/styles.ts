@@ -31,4 +31,6 @@ export const SpanLogo = styled.span`
     color: #D4C2FF;
     line-height:28px;
     width: 290px;
+
+    text-align: start;
 `
