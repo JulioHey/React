@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useCallback } from 'react';
+import NumberFormat from 'react-number-format';
 
 import profile from '../../assets/images/profile.jpg';
 
@@ -8,6 +9,22 @@ import Select from '../Select';
 import {Section, FullSection, Title, FormSection, FirstSection, ProfileImage, ProfileName } from  './styles';
 
 const ClassForm: React.FC  = () => {
+    const [ whatsapp, setWhatsapp ] = useState('');
+    const [ subject, setSubject ] = useState('');
+    const [ bio, setBio ] = useState('');
+    const [ price, setPrice] = useState('');
+    const [ weekDay, setWeekDay ] = useState('');
+    const [ from, setFrom ] = useState('');
+    const [ to, setTo ] = useState('');
+
+    const handleChangeSubject = useCallback((e) => {
+        setSubject(e.value)
+    }, [])
+
+    const handleChangeWeekDay = useCallback((e) => {
+        setWeekDay(e.value)
+    }, [])
+
     const subjectArrray = useMemo(() => {
         return ([
             { value: 'Artes', label: 'Artes'},
@@ -34,6 +51,101 @@ const ClassForm: React.FC  = () => {
         ])
     }, []);
 
+    const WhatsAppInput = useMemo(()=> {
+        return (
+            <NumberFormat 
+                customInput={InputClassForm}
+                label="WhatsApp" 
+                width="282px" 
+                type="tel"
+                value={whatsapp}
+                onChange={(e) => setWhatsapp(e.target.value)}
+                format="+55 (##) # #### ####"
+                mask="_"
+            />
+        )
+    }, [whatsapp])
+
+    const BioInput = useMemo(() => {
+        return (
+            <InputClassForm 
+                textarea="textarea" 
+                label="Biografia " 
+                width="700px"
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+            />
+        )
+    }, [bio])
+
+    const SubjectInput = useMemo(() => {
+        return (
+            <Select 
+                width="390px" 
+                label="Matéria" 
+                populatedOptions={subjectArrray} 
+                placeholder="Selecione o que você quer ensinar"
+                value={subjectArrray.find(obj => obj.value === subject)}
+                onChangeFunction={(e: any) => handleChangeSubject(e)}
+            />
+        )
+    }, [ subject, subjectArrray, handleChangeSubject ])
+
+    const PriceInput = useMemo(() => {
+        return (
+            <NumberFormat
+                customInput={InputClassForm}
+                name="price"
+                label="Custo da sua aula por hora" 
+                width="192px"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                placeholder="R$"
+                thousandSeparator={true}
+                allowedDecimalSeparators={[",", "."]}
+            />
+        )
+    }, [price])
+
+    const WeekDayInput = useMemo(() => {
+        return (<Select 
+        width="320px" 
+        label="Dia da semana" 
+        populatedOptions={weekDayArray} 
+        placeholder="Selecione o dia"
+        value={weekDayArray.find(obj => obj.value === weekDay)}
+        onChangeFunction={(e: any) => handleChangeWeekDay(e)}
+    />)
+    }, [weekDay, weekDayArray, handleChangeWeekDay])
+
+    const FromInput = useMemo(() => {
+        return (
+            <NumberFormat
+                customInput={InputClassForm} 
+                label="Das" 
+                width="80px"
+                tipe="time"
+                value={from}
+                onChange={(e) => setFrom(e.target.value)}
+                format="## : ##"
+            />
+        )
+    }, [ from ])
+
+    const ToInput = useMemo(() => {
+        return (
+            <NumberFormat
+                customInput={InputClassForm} 
+                label="Até" 
+                width="80px"
+                tipe="time"
+                value={to}
+                onChange={(e) => setTo(e.target.value)}
+                format="## : ##"
+            />
+        )
+    }, [ to ])
+
     return (
         <FormSection>
             <FullSection className="first">
@@ -43,25 +155,25 @@ const ClassForm: React.FC  = () => {
                         <ProfileImage src={profile} />
                         <ProfileName>Julio Hey</ProfileName>
                     </Section>
-                    <InputClassForm label="WhatsApp" width="282px"/>
+                    {WhatsAppInput}
                 </FirstSection>
                 <Section>
-                    <InputClassForm type="textarea" label="Biografia " width="700px"/>
+                    {BioInput}
                 </Section>
             </FullSection>
             <FullSection>
             <Title>Sobre a aula</Title>
                 <FirstSection>
-                    <Select width="390px" label="Matéria" populatedOptions={subjectArrray} placeholder="Selecione o que você quer ensinar"/>
-                    <InputClassForm type="" label="Custo da sua aula por hora " width="192px" />
+                    {SubjectInput}
+                    {PriceInput}
                 </FirstSection>
             </FullSection>
             <FullSection>
                 <Title>Horários disponíveis</Title>
                 <FirstSection>
-                    <Select width="320px" label="Dia da semana" populatedOptions={weekDayArray} placeholder="Selecione o dia"/>
-                    <InputClassForm type="" label="Das " width="100px" />
-                    <InputClassForm type="" label="Até " width="100px" />
+                    {WeekDayInput}
+                    {FromInput}
+                    {ToInput}
                 </FirstSection>
             </FullSection>
         </FormSection>

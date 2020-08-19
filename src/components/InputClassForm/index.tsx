@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { InputHTMLAttributes } from 'react';
 
 import { Section, Input, PlaceHolderLabel, TopLabel, TextArea } from './styles';
 
-interface InputClassFormProps {
-    type?: string,
+interface InputClassFormProps extends InputHTMLAttributes<HTMLInputElement>{
+    textarea?: string,
+    naem?: string,
     label?: string,
-    width?: string
+    width?: string,
+    type?: string,
+    placeholder?: string
 }
 
-const InputClassForm: React.FC<InputClassFormProps> = ({type, label, width}) => {
+const InputClassForm: React.FC<InputClassFormProps> = ({textarea, name, label, width, type, placeholder, ...rest}) => {
     return (
         <Section className={width}>
             <TopLabel>{label}</TopLabel>
-            { type ? 
+            { textarea ? 
             <TextArea />
             : 
-            <Input />}
-            
+            <Input className={name} type={type} {...rest} />}
+            { placeholder ?
+            <PlaceHolderLabel>{placeholder}</PlaceHolderLabel>
+            : ""}
         </Section>
     )
 }

@@ -21,6 +21,7 @@ export const Input = styled.input`
     font: 400 16px Poppins;
     line-height: 26px;
     color:#000;
+    text-align: ${ props => props.className ? "right" : "inital"};
 `
 
 export const TopLabel = styled.label`
@@ -37,11 +38,11 @@ export const TopLabel = styled.label`
 `
 
 export const PlaceHolderLabel = styled.label`
-    position: relative;
+    position: absolute;
     font: 400 16px Poppins;
+    padding-top: 50px;
     line-height: 26px;
     color:#9C98A6;
-
     align-self: flex-start;
 `
 
