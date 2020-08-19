@@ -46,6 +46,9 @@ export const FirstSection = styled(Section)`
     width: 726px;
 
     justify-content: space-between;
+
+    border-bottom: ${ props => props.className ? "1px solid #E6E6F0" : ""};
+    padding-bottom: ${ props => props.className ? "24px" : ""};
 `
 
 export const ProfileImage = styled.img`
@@ -60,4 +63,31 @@ export const ProfileName = styled.strong`
     line-height: 36px;
 
     margin-left: 20px;
+`
+
+const Button = styled.button`
+    outline: none;
+    border: none;
+    background-color: #FFF;
+
+`
+
+export const AddNewScheduleItemButton = styled(Button)`
+    font: 600 24px Archivo;
+    line-height: 34px;
+    color: #8257E5;
+    width: 300px;
+
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E6E6F0;
+`
+
+export const ExcludeScheduleItemButton = styled(Button)`
+    position: absolute;
+    font: 600 14px Archivo;
+    line-height: 24px;
+
+    width: 200px;
+    margin-top: 170px;
+    color: #F00
 `

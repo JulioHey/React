@@ -6,24 +6,17 @@ import profile from '../../assets/images/profile.jpg';
 import InputClassForm from '../InputClassForm';
 import Select from '../Select';
 
-import {Section, FullSection, Title, FormSection, FirstSection, ProfileImage, ProfileName } from  './styles';
+import {Section, FullSection, Title, FormSection, FirstSection, ProfileImage, ProfileName, AddNewScheduleItemButton,
+ ExcludeScheduleItemButton } from  './styles';
 
 const ClassForm: React.FC  = () => {
     const [ whatsapp, setWhatsapp ] = useState('');
     const [ subject, setSubject ] = useState('');
     const [ bio, setBio ] = useState('');
     const [ price, setPrice] = useState('');
-    const [ weekDay, setWeekDay ] = useState('');
-    const [ from, setFrom ] = useState('');
-    const [ to, setTo ] = useState('');
-
-    const handleChangeSubject = useCallback((e) => {
-        setSubject(e.value)
-    }, [])
-
-    const handleChangeWeekDay = useCallback((e) => {
-        setWeekDay(e.value)
-    }, [])
+    const [ scheduleItems, setScheduleItems ] = useState([
+        {weekDay: '', to: '', from: '' },
+    ]);
 
     const subjectArrray = useMemo(() => {
         return ([
@@ -51,6 +44,93 @@ const ClassForm: React.FC  = () => {
         ])
     }, []);
 
+    const handleChangeSubject = useCallback((e) => {
+        setSubject(e.value)
+    }, []);
+
+
+    // Está bugado n sei pq... o scheduleItems é atualizado mas por algum motivo
+    // Para desbugar adicionei o Estado test, e adicionei 
+
+    const handleDeleteScheduleItem = useCallback((position) => {
+        setScheduleItems(scheduleItems.slice(0, position))
+    }, [scheduleItems]);
+
+    const handleChangeScheduleItem = useCallback(( position: number, field: string, value: string) => {
+        const updatedScheduleItems = scheduleItems.map((scheduleItem, index) => {
+            if (index === position) {
+                return { ...scheduleItem, [field]: value}
+            }
+
+            return scheduleItem;
+        })
+
+        setScheduleItems(updatedScheduleItems)
+    }, [scheduleItems]);
+
+    const handleAddNewScheduleItem = useCallback(() => {
+        setScheduleItems([
+            ...scheduleItems,
+            {weekDay: '', to: '', from: ''}
+        ]);
+    }, [scheduleItems]);
+
+    const ConstructWeekDayInput = useCallback((scheduleItem, index) => {
+        return (<Select 
+        width="400px" 
+        label="Dia da semana" 
+        populatedOptions={weekDayArray} 
+        placeholder="Selecione o dia"
+        value={weekDayArray.find(obj => obj.value === scheduleItem.weekDay)}
+        onChangeFunction={(e: any) => handleChangeScheduleItem(index, "weekDay", e.value)}
+    />)
+    }, [ weekDayArray, handleChangeScheduleItem]);
+
+    const ConstructFromInput = useCallback((scheduleItem, index) => {
+        return (
+            <NumberFormat
+                customInput={InputClassForm} 
+                label="Das" 
+                width="100px"
+                tipe="time"
+                value={scheduleItem.from}
+                onChange={(e) => handleChangeScheduleItem(index, "from", e.target.value)}
+                format="## : ##"
+            />
+        )
+    }, [ handleChangeScheduleItem ]);
+
+    const ConstructToInput = useCallback((scheduleItem, index) => {
+        return (
+            <NumberFormat
+                customInput={InputClassForm} 
+                label="Até" 
+                width="100px"
+                tipe="time"
+                value={scheduleItem.to}
+                onChange={(e) => handleChangeScheduleItem(index, "to", e.target.value)}
+                format="## : ##"
+            />
+        )
+    }, [  handleChangeScheduleItem ]);
+
+    const handleScheduleItemsInput = useMemo(() => {
+        return (scheduleItems.map((scheduleItem, index) => {
+            return (
+                <Section key={index}>
+                    <FirstSection  className="scheduleItem">
+                        {ConstructWeekDayInput(scheduleItem, index)}
+                        {ConstructFromInput(scheduleItem, index)}
+                        {ConstructToInput(scheduleItem, index)}
+                    </FirstSection>
+                    { index === (scheduleItems.length - 1) && index !== 0 ? 
+                    <ExcludeScheduleItemButton onClick={(e) => handleDeleteScheduleItem(index)}>Excluir Horário</ExcludeScheduleItemButton>
+                    : ""}
+                </Section>
+            )
+        }))
+    }, [ scheduleItems, ConstructWeekDayInput, ConstructFromInput, ConstructToInput, handleDeleteScheduleItem]);
+
     const WhatsAppInput = useMemo(()=> {
         return (
             <NumberFormat 
@@ -64,7 +144,7 @@ const ClassForm: React.FC  = () => {
                 mask="_"
             />
         )
-    }, [whatsapp])
+    }, [whatsapp]);
 
     const BioInput = useMemo(() => {
         return (
@@ -76,7 +156,7 @@ const ClassForm: React.FC  = () => {
                 onChange={(e) => setBio(e.target.value)}
             />
         )
-    }, [bio])
+    }, [bio]);
 
     const SubjectInput = useMemo(() => {
         return (
@@ -89,7 +169,7 @@ const ClassForm: React.FC  = () => {
                 onChangeFunction={(e: any) => handleChangeSubject(e)}
             />
         )
-    }, [ subject, subjectArrray, handleChangeSubject ])
+    }, [ subject, subjectArrray, handleChangeSubject ]);
 
     const PriceInput = useMemo(() => {
         return (
@@ -105,46 +185,7 @@ const ClassForm: React.FC  = () => {
                 allowedDecimalSeparators={[",", "."]}
             />
         )
-    }, [price])
-
-    const WeekDayInput = useMemo(() => {
-        return (<Select 
-        width="320px" 
-        label="Dia da semana" 
-        populatedOptions={weekDayArray} 
-        placeholder="Selecione o dia"
-        value={weekDayArray.find(obj => obj.value === weekDay)}
-        onChangeFunction={(e: any) => handleChangeWeekDay(e)}
-    />)
-    }, [weekDay, weekDayArray, handleChangeWeekDay])
-
-    const FromInput = useMemo(() => {
-        return (
-            <NumberFormat
-                customInput={InputClassForm} 
-                label="Das" 
-                width="80px"
-                tipe="time"
-                value={from}
-                onChange={(e) => setFrom(e.target.value)}
-                format="## : ##"
-            />
-        )
-    }, [ from ])
-
-    const ToInput = useMemo(() => {
-        return (
-            <NumberFormat
-                customInput={InputClassForm} 
-                label="Até" 
-                width="80px"
-                tipe="time"
-                value={to}
-                onChange={(e) => setTo(e.target.value)}
-                format="## : ##"
-            />
-        )
-    }, [ to ])
+    }, [price]);
 
     return (
         <FormSection>
@@ -169,12 +210,11 @@ const ClassForm: React.FC  = () => {
                 </FirstSection>
             </FullSection>
             <FullSection>
-                <Title>Horários disponíveis</Title>
                 <FirstSection>
-                    {WeekDayInput}
-                    {FromInput}
-                    {ToInput}
+                    <Title>Horários disponíveis</Title>
+                    <AddNewScheduleItemButton onClick={handleAddNewScheduleItem}>+ Novo Horário</AddNewScheduleItemButton>
                 </FirstSection>
+                {handleScheduleItemsInput}
             </FullSection>
         </FormSection>
     )
