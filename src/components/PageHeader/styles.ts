@@ -23,7 +23,8 @@ export const HeaderContent = styled(Section)`
     flex-direction: row;
     justify-content: space-between;
 
-    height: 250px;
+    height: 220px;
+    padding-bottom: 50px;
     background-color: #8257E5;
 `
 
