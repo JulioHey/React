@@ -6,6 +6,7 @@ interface SelectProps {
     width: string,
     label: string,
     placeholder: string,
+    isHeader?: string,
     populatedOptions: Array<{
         value: string;
         label: string;
@@ -14,11 +15,11 @@ interface SelectProps {
     onChangeFunction?: any
 }
 
-const Select2: React.FC<SelectProps> = ({populatedOptions, width, label, placeholder, value, onChangeFunction }) => {
+const Select2: React.FC<SelectProps> = ({populatedOptions, width, label, placeholder, value, onChangeFunction, isHeader }) => {
 
     return (
         <Section className="382px">
-            <TopLabel>{label}</TopLabel>
+            <TopLabel className={isHeader}>{label}</TopLabel>
             <StyledSelectDale 
                 options={populatedOptions} 
                 styles={StyledSelect} 

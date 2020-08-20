@@ -4,7 +4,7 @@ import BackLink from '../../components/BackLink';
 
 import logoImg from '../../assets/images/logo.svg';
 
-import { Section, TopBarSection, TopBarSpan, LogoImage, HeaderContent, Title, SubTitle, EmojiSpan, Emoji } from './styles';
+import { Section, TopBarSection, TopBarSpan, LogoImage, HeaderContent, Title, SubTitle, EmojiSpan, Emoji} from './styles';
 
 interface PageHeaderProps {
     pagetitle?: string;
@@ -14,7 +14,7 @@ interface PageHeaderProps {
     emojiText?: string;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({title, subtitle, emoji, emojiText, pagetitle}) => {
+const PageHeader: React.FC<PageHeaderProps> = ({title, subtitle, emoji, emojiText, pagetitle, ...props}) => {
     return (
         <Section>
             <TopBarSection>
@@ -32,6 +32,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({title, subtitle, emoji, emojiTex
                     <EmojiSpan>{emojiText}</EmojiSpan>
                 </Section>
             </HeaderContent>
+            {props.children}
         </Section>
     )
 }

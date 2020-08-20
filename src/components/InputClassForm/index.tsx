@@ -8,13 +8,14 @@ interface InputClassFormProps extends InputHTMLAttributes<HTMLInputElement>{
     label?: string,
     width?: string,
     type?: string,
-    placeholder?: string
+    placeholder?: string,
+    isHeader?: string
 }
 
-const InputClassForm: React.FC<InputClassFormProps> = ({textarea, name, label, width, type, placeholder, ...rest}) => {
+const InputClassForm: React.FC<InputClassFormProps> = ({textarea, name, label, width, type, placeholder, isHeader, ...rest}) => {
     return (
         <Section className={width}>
-            <TopLabel>{label}</TopLabel>
+            <TopLabel className={isHeader} >{label}</TopLabel>
             { textarea ? 
             <TextArea />
             : 

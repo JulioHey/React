@@ -27,7 +27,8 @@ export const Input = styled.input`
 export const TopLabel = styled.label`
     font: 400 14px Poppins;
     line-height: 24px;
-    color:#9C98A6;
+    color: ${ props => props.className ? '#D4C2FF' : '#9C98A6' };
+
     width: 200px;
 
     align-self: flex-start;

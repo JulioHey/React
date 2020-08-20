@@ -36,13 +36,14 @@ export const StyledSelect = {
 export const StyledSelectDale = styled(Select)`
     font: 400 16px Poppins;
     line-height: 26px;
-    margin-right: ${ props => props.width === "320px" ? "60px" : "initial"}
+    margin-right: ${ props => props.width === "320px" ? "60px" : "initial"};
+    align-self: flex-start;
 `
 
 export const TopLabel = styled.label`
     font: 400 14px Poppins;
     line-height: 24px;
-    color:#9C98A6;
+    color: ${ props => props.className ? '#D4C2FF' : '#9C98A6' };
 
 
     justify-self: flex-start;
