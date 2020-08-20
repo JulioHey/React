@@ -5,7 +5,6 @@ import ScheduleWeekDay from '../ScheduleWeekDay';
 import {Section } from './styles';
 
 const ScheduleItemComponent: React.FC = () => {
-    const arr = [0, 1, 2, 3, 4]
 
     const scheduleItem = useMemo(() => {
         return [
@@ -18,7 +17,7 @@ const ScheduleItemComponent: React.FC = () => {
     }, [])
 
     const AllScheduleItems = useMemo(() => {
-        var updated = arr.map((item, index) => {
+        var updated = scheduleItem.map((item, index) => {
             if ( scheduleItem[index].to && scheduleItem[index].from ) {
                 return (<ScheduleWeekDay 
                         active="active" 
@@ -31,7 +30,7 @@ const ScheduleItemComponent: React.FC = () => {
         })
 
         return updated;
-    }, [])
+    }, [ scheduleItem])
 
     return (
         <Section>
