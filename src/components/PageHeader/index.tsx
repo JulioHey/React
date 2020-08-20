@@ -3,33 +3,33 @@ import React from 'react';
 import BackLink from '../../components/BackLink';
 
 import logoImg from '../../assets/images/logo.svg';
-import emojiRocket from '../../assets/images/icons/rocket.svg';
 
 import { Section, TopBarSection, TopBarSpan, LogoImage, HeaderContent, Title, SubTitle, EmojiSpan, Emoji } from './styles';
 
 interface PageHeaderProps {
+    pagetitle?: string;
     title?: string;
     subtitle?: string;
     emoji?: string;
     emojiText?: string;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({title, subtitle, emoji, emojiText}) => {
+const PageHeader: React.FC<PageHeaderProps> = ({title, subtitle, emoji, emojiText, pagetitle}) => {
     return (
         <Section>
             <TopBarSection>
                 <BackLink link="/landing" />
-                <TopBarSpan>Dar aulas</TopBarSpan>
+                <TopBarSpan>{pagetitle}</TopBarSpan>
                 <LogoImage src={logoImg} />
             </TopBarSection>
             <HeaderContent>
                 <Section className="titleSubTitle">
-                    <Title>Que incrível que você quer dar aulas.</Title>
-                    <SubTitle>O primeiro passo é preencher esse formulário de inscrição.</SubTitle>
+                    <Title>{title}</Title>
+                    <SubTitle>{subtitle}</SubTitle>
                 </Section>
                 <Section className="emoji">
-                    <Emoji src={emojiRocket} />
-                    <EmojiSpan>Prepare-se! Vai ser o máximo.</EmojiSpan>
+                    <Emoji src={emoji} />
+                    <EmojiSpan>{emojiText}</EmojiSpan>
                 </Section>
             </HeaderContent>
         </Section>

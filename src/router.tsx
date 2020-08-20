@@ -6,6 +6,7 @@ import RegisterPage from './pages/registerPage';
 import ForgotPassword from './pages/forgotPassword';
 import LandingPage from './pages/landingPage';
 import RegisterClass from './pages/registerClass';
+import TeacherList from './pages/teacherList';
 
 function Routes() {
     return (
@@ -15,6 +16,7 @@ function Routes() {
             <Route path="/recover" exact component={ForgotPassword} />
             <Route path="/landing" exact component={LandingPage} />
             <Route path="/registerClass" exact component={RegisterClass} />
+            <Route path="/teacherList" exact component={TeacherList} />
         </BrowserRouter>
     )
 }

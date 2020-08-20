@@ -20,6 +20,7 @@ const ClassForm: React.FC  = () => {
         {weekDay: '', to: '', from: '' },
     ]);
 
+    // Essas aqui são constante q n vao ser mudadas nunca fiquei em duvida se chamava elas aqui ou fora da função
     const subjectArrray = useMemo(() => {
         return ([
             { value: 'Artes', label: 'Artes'},
@@ -50,12 +51,14 @@ const ClassForm: React.FC  = () => {
         setSubject(e.value)
     }, []);
 
-
-    // Está bugado n sei pq... o scheduleItems é atualizado mas por algum motivo
-    // Para desbugar adicionei o Estado test, e adicionei 
-
     const handleDeleteScheduleItem = useCallback((position) => {
-        setScheduleItems(scheduleItems.slice(0, position))
+        let updatedScheduleItems = scheduleItems.slice(0, position);
+
+        const updated2 = scheduleItems.slice(position + 1, scheduleItems.length - position + 1);
+
+        updatedScheduleItems = updatedScheduleItems.concat(updated2)
+
+        setScheduleItems(updatedScheduleItems)
     }, [scheduleItems]);
 
     const handleChangeScheduleItem = useCallback(( position: number, field: string, value: string) => {
@@ -125,7 +128,7 @@ const ClassForm: React.FC  = () => {
                         {ConstructFromInput(scheduleItem, index)}
                         {ConstructToInput(scheduleItem, index)}
                     </FirstSection>
-                    { index === (scheduleItems.length - 1) && index !== 0 ? 
+                    { scheduleItems.length > 1 ? 
                     <ExcludeScheduleItemButton onClick={(e) => handleDeleteScheduleItem(index)}>Excluir Horário</ExcludeScheduleItemButton>
                     : ""}
                 </Section>

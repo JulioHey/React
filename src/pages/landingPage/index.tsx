@@ -43,7 +43,7 @@ const LandingPage: React.FC = () => {
                     </WelcomeSpan>
                 </WelcomeSection>
                 <ButtonsSection>
-                    <StyledLink to="/">
+                    <StyledLink to="/teacherList">
                         <ButtonLogoImage src={studyIcon} />
                         Estudar
                     </StyledLink>
