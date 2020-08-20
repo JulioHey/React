@@ -30,7 +30,7 @@ export const FormSection = styled.div`
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 165vh;
+    height: 100%;
     flex-direction: column;
 
     background-color:#F0F0F7;

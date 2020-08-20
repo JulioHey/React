@@ -96,11 +96,12 @@ const ClassForm: React.FC  = () => {
             <NumberFormat
                 customInput={InputClassForm} 
                 label="Das" 
+                name="from"
                 width="100px"
                 tipe="time"
                 value={scheduleItem.from}
                 onChange={(e) => handleChangeScheduleItem(index, "from", e.target.value)}
-                format="## : ##"
+                format="##:## horas"
             />
         )
     }, [ handleChangeScheduleItem ]);
@@ -109,12 +110,13 @@ const ClassForm: React.FC  = () => {
         return (
             <NumberFormat
                 customInput={InputClassForm} 
-                label="Até" 
+                label="Até"
+                name="to"
                 width="100px"
                 tipe="time"
                 value={scheduleItem.to}
                 onChange={(e) => handleChangeScheduleItem(index, "to", e.target.value)}
-                format="## : ##"
+                format="##:## horas"
             />
         )
     }, [  handleChangeScheduleItem ]);
