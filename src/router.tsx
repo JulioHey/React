@@ -7,6 +7,7 @@ import ForgotPassword from './pages/forgotPassword';
 import LandingPage from './pages/landingPage';
 import RegisterClass from './pages/registerClass';
 import TeacherList from './pages/teacherList';
+import ProfilePage from './pages/profilePage';
 
 function Routes() {
     return (
@@ -17,6 +18,7 @@ function Routes() {
             <Route path="/landing" exact component={LandingPage} />
             <Route path="/registerClass" exact component={RegisterClass} />
             <Route path="/teacherList" exact component={TeacherList} />
+            <Route path="/profilePage" exact component={ProfilePage} />
         </BrowserRouter>
     )
 }

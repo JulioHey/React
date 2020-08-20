@@ -9,7 +9,7 @@ import giveClasseIcon from '../../assets/images/icons/give-classes.svg';
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
 import logOut from '../../assets/images/icons/log-out.svg';
 
-import { Section, HeaderSection, ProfileImage, ProfileSpan, Button, LogOutImage, ContentSection, Img, SpanLogo, LogoSection, BackgroundImage, 
+import { Section, HeaderSection, ProfileImage, ProfileLink, Button, LogOutImage, ContentSection, Img, SpanLogo, LogoSection, BackgroundImage, 
     HeroSection, WelcomeSection, WelcomeStrong, WelcomeStrongDarker, WelcomeSpan, PurpleHeart, ButtonsSection, StyledLink, ButtonLogoImage} from './styles'
 
 const LandingPage: React.FC = () => {
@@ -18,7 +18,7 @@ const LandingPage: React.FC = () => {
             <HeaderSection>
                 <Section>
                     <ProfileImage src={profile} />
-                    <ProfileSpan>Julio Hey</ProfileSpan>
+                    <ProfileLink to="/profilePage">Julio Hey</ProfileLink>
                 </Section>
                 <Button>
                     <LogOutImage src={logOut} />

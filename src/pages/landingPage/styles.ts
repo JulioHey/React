@@ -25,13 +25,13 @@ export const ProfileImage = styled.img`
     margin-left: 144px;
 `
 
-export const ProfileSpan = styled.span`
+export const ProfileLink = styled(Link)`
+    text-decoration: none;
     font: 500 14px Poppins;
     line-height: 30px;
     color: #D4C2FF;
 
     margin-left: 16px;
-
 `
 
 export const Button = styled.button`

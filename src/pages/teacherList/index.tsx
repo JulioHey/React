@@ -52,7 +52,7 @@ const TeacherList: React.FC = () => {
             value={weekDayArray.find(obj => obj.value === scheduleItem.weekDay)}
             onChangeFunction={(e: any) => handleChangeScheduleItem("weekDay", e.value)}
     />)
-    }, [ weekDayArray, handleChangeScheduleItem]);
+    }, [ scheduleItem, handleChangeScheduleItem]);
 
     const TimeInput = useMemo(() => {
         return (
@@ -67,7 +67,7 @@ const TeacherList: React.FC = () => {
                 format="##:## horas"
             />
         )
-    }, [ handleChangeScheduleItem ]);
+    }, [ scheduleItem, handleChangeScheduleItem ]);
 
     const SubjectInput = useMemo(() => {
         return (
@@ -81,7 +81,7 @@ const TeacherList: React.FC = () => {
                 onChangeFunction={(e: any) => handleChangeScheduleItem("subject", e.value)}
             />
         )
-    }, [ subjectArrray, handleChangeScheduleItem ]);
+    }, [ scheduleItem, handleChangeScheduleItem ]);
 
     return (
         <Section>
@@ -90,6 +90,7 @@ const TeacherList: React.FC = () => {
                 title="Estes são os Proffys disponíveis."
                 emojiText="Nós temos 32 professores."
                 emoji={emojiSmile}
+                isSmall="isSmall"
             >
                 <HeaderSection>
                     {SubjectInput}

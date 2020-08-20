@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Section = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     flex-direction: column;
 
     width: ${ props => props.className};
@@ -41,7 +41,7 @@ export const TopLabel = styled.label`
 export const PlaceHolderLabel = styled.label`
     position: absolute;
     font: 400 16px Poppins;
-    padding-top: 50px;
+    padding-top: 65px;
     line-height: 26px;
     color:#9C98A6;
     align-self: flex-start;

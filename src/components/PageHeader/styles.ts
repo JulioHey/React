@@ -20,10 +20,12 @@ export const TopBarSection = styled(Section)`
 `
 
 export const HeaderContent = styled(Section)`
-    flex-direction: row;
+    flex-direction: ${ props => props.className === "profile" ? "column" : "row"};
+
     justify-content: space-between;
 
-    height: 220px;
+    width: 100vw;
+    height: ${ props => props.className === "isSmall" ? "170px" : "300px"};
     padding-bottom: 50px;
     background-color: #8257E5;
 `
@@ -47,19 +49,22 @@ export const Title = styled.strong`
     line-height: 42px;
     color: #FFF;
 
-    align-self: flex-start;
+    align-self: ${props => props.className ? "center" : "flex-start"};
     width: 380px;
+    text-align: ${props => props.className ? "center" : "flex-start"};
 `
 
 export const SubTitle = styled.strong`
-    margin-top: 24px;
+    margin-top: ${props => props.className ? "0" : "24px"};
+    margin-bottom: ${props => props.className ? "30px" : "0"};
 
     font: 400 16px Poppins;
     line-height: 26px;
     color: #D4C2FF;
 
-    align-self: flex-start;
+    align-self: ${props => props.className ? "center" : "flex-start"};
     width: 280px;
+    text-align: ${props => props.className ? "center" : "flex-start"};
 `
 
 export const EmojiSpan = styled.span`
@@ -76,4 +81,32 @@ export const Emoji = styled.img`
     width: auto;
 
     margin-right: 24px;
+`
+
+export const BackgroundProfile = styled.img`
+    position: absolute;
+    height: 330px;
+    left: 300px;
+`
+
+export const ProfileImage = styled.img`
+    width: 180px;
+    border-radius: 50%;
+
+`
+
+export const ChangePictureButton = styled.button`
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #04D361;
+    border: none;
+    outline: none;
+    position: relative;
+    top: -30px;
+    left: 50px;
+`
+
+export const ChangePictureImage = styled.img`
+    width: 30px;
 `
