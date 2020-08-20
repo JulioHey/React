@@ -6,8 +6,10 @@ import profile from '../../assets/images/profile.jpg';
 import InputClassForm from '../InputClassForm';
 import Select from '../Select';
 
+import warningIcon from '../../assets/images/icons/warning.svg';
+
 import {Section, FullSection, Title, FormSection, FirstSection, ProfileImage, ProfileName, AddNewScheduleItemButton,
- ExcludeScheduleItemButton } from  './styles';
+ ExcludeScheduleItemButton, AtentionLogo, AtentionSpan , SubmitButton} from  './styles';
 
 const ClassForm: React.FC  = () => {
     const [ whatsapp, setWhatsapp ] = useState('');
@@ -215,6 +217,18 @@ const ClassForm: React.FC  = () => {
                     <AddNewScheduleItemButton onClick={handleAddNewScheduleItem}>+ Novo Horário</AddNewScheduleItemButton>
                 </FirstSection>
                 {handleScheduleItemsInput}
+            </FullSection>
+            <FullSection className="last">
+                <FirstSection>
+                    <Section>
+                        <AtentionLogo src={warningIcon} />
+                        <Section className="column">
+                            <AtentionSpan>Importante!</AtentionSpan>
+                            <AtentionSpan>Preencha todos os dados corretamente.</AtentionSpan>
+                        </Section>
+                    </Section>
+                    <SubmitButton>Salvar cadastro</SubmitButton>
+                </FirstSection>
             </FullSection>
         </FormSection>
     )

@@ -4,18 +4,25 @@ export const Section = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    flex-direction: ${ props => props.className };
 `
 
 export const FullSection = styled(Section)`
     position: relative;
-    top: -100px;
+    top: -80px;
 
     width: 726px;
     flex-direction:column;
 
-    padding: 56px 64px;
-    background: #FFF;
-    border-radius: 8px;
+    padding: 56px 64px 20px;
+    background: ${ props => props.className === "last" ?  "#FAFAFC" : "#FFF"};
+    border-top: ${ props => props.className === "last" ?  "1px solid #E6E6F0" : ""};
+    
+    border-top-right-radius: ${ props => props.className === "first" ?  "8px" : ""};
+    border-top-left-radius: ${ props => props.className === "first" ?  "8px" : ""};
+    border-bottom-left-radius: ${ props => props.className === "last" ?  "8px" : ""};
+    border-bottom-right-radius: ${ props => props.className === "last" ?  "8px" : ""};
 `
 
 export const FormSection = styled.div`
@@ -89,5 +96,24 @@ export const ExcludeScheduleItemButton = styled(Button)`
 
     width: 200px;
     margin-top: 170px;
-    color: #F00
+    color: #F00;
+`
+
+export const AtentionLogo = styled.img`
+    margin-right: 10px;
+`
+
+export const AtentionSpan = styled.span`
+    align-self: flex-start;
+    font: 400 12px Poppins;
+    line-height: 20px;
+`
+
+export const SubmitButton = styled(Button)`
+    width: 197px;
+    height: 56px;
+    font: 600 16px Archivo;
+    color: #FFF;
+    background-color: #04D361;
+    border-radius: 8px;
 `
